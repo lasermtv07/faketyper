@@ -8,15 +8,23 @@ errors=100
 error_characters=''
 string='test'
 if arg==1:
+    print('''
+**************
+CRITICAL FIX!
+**************
+Version: beta v1.1''')
     print("NOTE: THIS IS OPEN TESTING AND BACKUP VERSION ONLY AND IS NOT MEANT TO REPRESENT THE FINISHED PRODUCT!")
     print("More info within help that you can open with faketyper help")
-    print("Version: beta v1.0")
     print("Program by lasermtv")
 for x in range(1,arg):
     if sys.argv[x]=='v' or sys.argv[x]=='version':
+        print('''
+**************
+CRITICAL FIX!
+**************
+Version: beta v1.1''')
         print("NOTE: THIS IS OPEN TESTING AND BACKUP VERSION ONLY AND IS NOT MEANT TO REPRESENT THE FINISHED PRODUCT!")
         print("More info within help that you can open with faketyper help")
-        print("Version: beta v1.0")
         print("Program by lasermtv")
         break
     if sys.argv[x]=='r' or sys.argv[x]=='run':
@@ -52,8 +60,8 @@ for x in range(1,arg):
     if sys.argv[x]=='h' or sys.argv[x]=='help':
         print("HELP")
         print("====")
-        print("Note: This is a beta and it is NOT SUPPOSED TO REPRESENT THE FULL PRODUCT! I only wanna backup it here as Im gonna have to rewrite a big chunk of it,")
-        print("      because the code is pretty bad. But if u use it anyway and find a bug, please report it here: https://forms.gle/zrfyfarPjU3WtuQB7")
+        print("<b 1.1>\nNote: This is a beta and it is NOT SUPPOSED TO REPRESENT THE FULL PRODUCT! I only wanna backup it here as Im gonna have to rewrite a big chunk of it,")
+        print("      because the code is pretty bad. But if u use it anyway and find a bug, please report it using GitHub issues")
         print("      Also dont look at it unless you wanna add it to your cringe compilation.\n      Your Laser =)")
         print("Syntax marks: <arg> - required argument")
         print("              [arg] - additional, not required argument")
@@ -65,4 +73,12 @@ for x in range(1,arg):
         print("       [error characters] - list of all characters from which characters that replace errors will be choosen")
         print("version - v - prints current version and author. Syntax: faketyper v")
         print("help - h - prints this help")
-
+        print("changelog - c - prints the changelog")
+    if sys.argv[x]=='c' or sys.argv[x]=='changelog':
+        print('''
+        *********
+        CHANGELOG
+        *********
+        -Version: beta 1.1
+        -fixed the capital letters bug
+        -added changelog command''')

@@ -37,7 +37,7 @@ def typer(text,cpm,correctness,replace_string):
         draw_ty(kb)
         if tindex==' ':print(space_on)
         else:print(space_off)
-        keyboard.send(tindex)
+        keyboard.write(tindex)
         kb=copy.deepcopy(kb_original)
         time.sleep(1/cpm)
         os.system('cls')
