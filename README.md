@@ -1,4 +1,4 @@
-# faketyper
+faketyper
 Current version - beta 1.1
 DESC: CLI program that simulates the keyboard input
 HELP: 
