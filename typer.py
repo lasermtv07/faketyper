@@ -5,7 +5,7 @@ import random
 import keyboard
 import math
 
-def typer(text,cpm,correctness,replace_string):
+def typer(text,cpm,correctness,replace_string,kb_use):
     if replace_string=='':
         replace_string='qwertyuiop[]asdfghjkl;zxcvbnm,./'
     index=0
@@ -26,22 +26,22 @@ def typer(text,cpm,correctness,replace_string):
 
     while index<len(text):
         tindex=text[index]
-        if random.randint(0,math.ceil(correctness))==0 and correctness<100:
-            t=random.randint(0,len(replace_string)-1)
-            tindex=replace_string[t]
         for z in kb:
             if tindex in z:
                 ind=z.index(tindex)
                 z[ind] = "█"
         
-        draw_ty(kb)
-        if tindex==' ':print(space_on)
-        else:print(space_off)
+        if kb_use==1: draw_ty(kb)
+        if tindex==' ' and kb_use==1 :print(space_on)
+        elif kb_use==1:print(space_off)
         keyboard.write(tindex)
+        print(tindex)
         kb=copy.deepcopy(kb_original)
         time.sleep(1/cpm)
-        os.system('cls')
+        #os.system('cls')
         index+=1
+
+typer("YoU aRe A fUcKiNg BiTcH", 5, 100,'',0)
 #qwertyqwertyqwertyqwertyasdxmqwertyasdxmqwertyasdxmqqqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxm
 #qwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmenglish keyboard text hahahahahhahaahasdsasdassasdsasdasssttexttexttexttexttexttexttexttexttexttexttexttexttexttextte xtte xt
 #te xt text2 texnnhihihihihihniaidsadacdra
@@ -49,4 +49,9 @@ def typer(text,cpm,correctness,replace_string):
 #nhojnhojahojahojnjhafnkhafjkahfjkahfjkahfkjnhfknasnfkadfkjjfahhakjfhanfhajknhakjfnjkahfanfhjnnfhjkafhjkahfjkahfjkahfakfhfafhnafhkjdnafhnkafnajfhajfhknnhfahfafhakhfanknfhnkfanjkanhnkjfhakhlandknfhakhnadkfh
 #ahojnhojahnnahojkjhafjkhnfjkahfjnnhfjkahfkjahfkjnshfnanfkjjfanhakjfhajnhajkfnakjfhjknhfajfhjknfnjkafhnnahfjkahnjkahfakfhnafhnanhkjdsanhjkafhajfhajfhkjahfahfnfhakhnajkcnhjkfahjkafhakjfhanhlasdkjfnanngadkfh
 #ahojahojahojahojkjhafjkhafjkahfjkahfjkahfkjahfkjashfkadfkjjfahhakjfhajfhajkfhakjfhjkahfajfhjkafhjkafhjkahfjkahfjkahfakfhfafhkafhkjdsafhjkafhajfhajfhkjahfahfafhakhfajkcfhjkfahjkafhakjfhakhlasdkjfhakhgadkfh
-#
+#hello you fuckinjg bitch
+#hello you fuckinjg bitch
+#you are a ukin itchyou are a ukin itch
+#you are a ukin itchyou are a ukin itch
+#you are a fucking bitch
+#you are a fucking bitchYoU aRe A fUcKiNg BiTcH
