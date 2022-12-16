@@ -54,10 +54,6 @@ def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
 #hello you fuckinjg bitch
 #you are a ukin itchyou are a ukin itch
 #you are a ukin itchyou are a ukin itch
-#you are a fucking bitch
-#you are a fucking bitchYoU aRe A fUcKiNg BiTcH
 #YoU aRe A fUcKiNg BiTcH
 #YoU aRe ApfUcKvjg xiTcH
-#YoU aRe A fUcKiNg BiTcH YoU aRe A fUcKiNg BiTcH YoU aRe A fUcKiNg BiTcH
-#YoU aRe A fUcKiNg BiTcH YoU aRe A fUcKiNg BiTcH YoU aRe A fUcKiNg BiTcH
 #[oU eRe A qUcKiNg ;iTcqmgoU /heoAeczcKiNpm]
