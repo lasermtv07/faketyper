@@ -13,7 +13,7 @@ Beta 0.2, the 'less if update'
 even though it works only with run <error characters>.`
 ### Commands
 -------------------------------------------------------------------
-~~~
+~~~~~~
 `run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - starts the typing
    -/k hides the onscreen keyboard
    -/d disables the use of capital letters. Legacy function.
