@@ -37,18 +37,18 @@ run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - sta
 ## Changelog
 ### Beta 0.2
 #### MAJOR:
--CLI system updated
--Command switches added
--Removed support for voluntary arguments and aliases
+- CLI system updated
+- Command switches added
+- Removed support for voluntary arguments and aliases
 #### MINOR:
 - changed the run command
--added switches /k /s /d /w
--removed the alias r
+- added switches /k /s /d /w
+- removed the alias r
 - changed the help command
--added the /s switch
--changed the version command
--added the /c switch
--removed changelog command
+- added the /s switch
+- changed the version command
+- added the /c switch
+- removed changelog command
 ## Disclaimer
 This is a beta and it is NOT SUPPOSED TO REPRESENT THE FULL PRODUCT! I only wanna backup it here as Im gonna have to rewrite a big chunk of it, because the code is pretty bad. But if u use it anyway and find a bug, please report it using GitHub issues. Also dont look at it unless you wanna add it. to your cringe compilation.
 
