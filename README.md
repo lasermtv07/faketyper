@@ -26,11 +26,11 @@ run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - sta
    help: help [/s] - displays this help
    -/s show shorter version of this help
    version: version [/c] - prints the current version of the program
-   -/c prints more detailed version of version changelog`
+   -/c prints more detailed version of version changelog```
    -----------------------------------------------------------------
-`help: help [/s] - displays this help
-    -/s show shorter version of this help`
-`version: version [/c] - prints the current version of the program
+```help: help [/s] - displays this help
+    -/s show shorter version of this help```
+```version: version [/c] - prints the current version of the program
        -/c prints more detailed version of version changelog```
 
 ## Changelog
