@@ -12,7 +12,6 @@ Beta 0.2, the 'less if update'
 <> - argument. All arguments are MANDATORY! *If you want to choose default settings, you have to use ' ',
 even though it works only with run <error characters>.`
 ### Commands
--------------------------------------------------------------------
 ```
 run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - starts the typing
    -/k hides the onscreen keyboard
@@ -23,16 +22,11 @@ run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - sta
    <errors> probability of error appearing in the text, 0-100, 100 for no errors
    <string> the text that will be typed out
    <error characters>* list of charcters that error characters will be repalced with. If u want all letters, write ' '
-   help: help [/s] - displays this help
+help: help [/s] - displays this help
    -/s show shorter version of this help
-   version: version [/c] - prints the current version of the program
+version: version [/c] - prints the current version of the program
    -/c prints more detailed version of version changelog
-   ```
-   -----------------------------------------------------------------
-`help: help [/s] - displays this help
-    -/s show shorter version of this help`
-`version: version [/c] - prints the current version of the program
-       -/c prints more detailed version of version changelog`
+```
 
 ## Changelog
 ### Beta 0.2
