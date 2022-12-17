@@ -14,7 +14,7 @@ even though it works only with run <error characters>.`
 ### Commands
 -------------------------------------------------------------------
 ~~~
-run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - starts the typing
+`run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - starts the typing
    -/k hides the onscreen keyboard
    -/d disables the use of capital letters. Legacy function.
    -/b writes out the typed string after typing finishes
@@ -26,7 +26,7 @@ run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - sta
    help: help [/s] - displays this help
    -/s show shorter version of this help
    version: version [/c] - prints the current version of the program
-   -/c prints more detailed version of version changelog~~~
+   -/c prints more detailed version of version changelog`
    -----------------------------------------------------------------
 `help: help [/s] - displays this help
     -/s show shorter version of this help`
