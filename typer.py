@@ -43,6 +43,6 @@ def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out):
         kb=copy.deepcopy(kb_original)
         time.sleep(1/cpm)
         if write_out==0:
-            if os.system('cls') !=0:
+            if os.system('cls')!=0:
                 os.system('clear')
         index+=1
