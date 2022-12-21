@@ -43,17 +43,3 @@ def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
         time.sleep(1/cpm)
         if write_out==0: os.system('cls')
         index+=1
-#qwertyqwertyqwertyqwertyasdxmqwertyasdxmqwertyasdxmqqqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxm
-#qwertyasdxmqwertyasdxmqwertyasdxmqwertyasdxmenglish keyboard text hahahahahhahaahasdsasdassasdsasdasssttexttexttexttexttexttexttexttexttexttexttexttexttexttextte xtte xt
-#te xt text2 texnnhihihihihihniaidsadacdra
-#avokahocmhahnjanoj
-#nhojnhojahojahojnjhafnkhafjkahfjkahfjkahfkjnhfknasnfkadfkjjfahhakjfhanfhajknhakjfnjkahfanfhjnnfhjkafhjkahfjkahfjkahfakfhfafhnafhkjdnafhnkafnajfhajfhknnhfahfafhakhfanknfhnkfanjkanhnkjfhakhlandknfhakhnadkfh
-#ahojnhojahnnahojkjhafjkhnfjkahfjnnhfjkahfkjahfkjnshfnanfkjjfanhakjfhajnhajkfnakjfhjknhfajfhjknfnjkafhnnahfjkahnjkahfakfhnafhnanhkjdsanhjkafhajfhajfhkjahfahfnfhakhnajkcnhjkfahjkafhakjfhanhlasdkjfnanngadkfh
-#ahojahojahojahojkjhafjkhafjkahfjkahfjkahfkjahfkjashfkadfkjjfahhakjfhajfhajkfhakjfhjkahfajfhjkafhjkafhjkahfjkahfjkahfakfhfafhkafhkjdsafhjkafhajfhajfhkjahfahfafhakhfajkcfhjkfahjkafhakjfhakhlasdkjfhakhgadkfh
-#hello you fuckinjg bitch
-#hello you fuckinjg bitch
-#you are a ukin itchyou are a ukin itch
-#you are a ukin itchyou are a ukin itch
-#YoU aRe A fUcKiNg BiTcH
-#YoU aRe ApfUcKvjg xiTcH
-#[oU eRe A qUcKiNg ;iTcqmgoU /heoAeczcKiNpm]
