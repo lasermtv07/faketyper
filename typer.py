@@ -1,12 +1,13 @@
 import copy
 import os
+import subprocess
 import time
 import random
 import keyboard
 import math
 
 def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
-    if replace_string==' ':
+    if replace_string==' ' or replace_string==None:
         replace_string='qwertyuiop[]asdfghjkl;zxcvbnm,./'
     index=0
     space_off='CTRL   WIN   ALT   [  SPACE  ]   ALT   OPT   CTRL'
@@ -41,5 +42,7 @@ def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
         if write_out==1: print(tindex, end=' ')
         kb=copy.deepcopy(kb_original)
         time.sleep(1/cpm)
-        if write_out==0: os.system('cls')
+        if write_out==0:
+            if os.system('cls') !=0:
+                os.system('clear')
         index+=1
