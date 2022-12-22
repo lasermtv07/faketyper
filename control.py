@@ -89,8 +89,8 @@ def run(sw,args):
         time.sleep(3)
     try: vol=args[3]
     except: vol=' '
-    try: typer.typer(args[2],int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out)
-    except: print("Error:run command:unknown error")
+    typer.typer(args[2],int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out)
+    print("Error:run command:unknown error")
 
 class Command:
     def __init__(self, cmd, alias, args,vol, execute):
