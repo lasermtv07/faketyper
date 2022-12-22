@@ -3,9 +3,10 @@ import os
 import subprocess
 import time
 import random
-import keyboard
 import math
+from pynput.keyboard import Controller
 
+keyboard=Controller()
 def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
     if replace_string==' ' or replace_string==None:
         replace_string='qwertyuiop[]asdfghjkl;zxcvbnm,./'
@@ -37,8 +38,8 @@ def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
         if kb_use==1: draw_ty(kb)
         if tindex==' ' and kb_use==1 :print(space_on)
         elif kb_use==1:print(space_off)
-        if use_caps==1: keyboard.write(tindex)
-        else: keyboard.send(tindex)
+        if use_caps==1:
+            keyboard.type(tindex)
         if write_out==1: print(tindex, end=' ')
         kb=copy.deepcopy(kb_original)
         time.sleep(1/cpm)
