@@ -2,30 +2,37 @@ import sys
 import os.path
 import typer
 import time
+import random
 history=[]
+def tips():
+    tip=["use -s when typing the help command for shortened version"
+        ,"when you always forget syntax of a command, just display shortened help",
+        "hello. Have (imaginary) 0.05USD for using my program",
+        "this command has esentially has no point rn, its for the future",
+        "use v -c to show the changelog",
+        "now on linux",
+        "the syntax of the run command is: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*>"]
+    print("The tip of today is: " + str(tip[random.randint(0,len(tip)-1)]))
 def help(sw,args):
     if "s" in sw:
         print('''
-        HELP - SHORT
-        ============
-        run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*>
-        help [/s]
-        version [/c]
-        
-        *if you want to use the default settings, set to ' '. ''')
+HELP - SHORT
+============
+run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters>
+help [/s]
+version [/c] ''')
     else:
         print('''
         ========
         = HELP =
         ========
-        <major 0.2>
+        <major 0.3>
         Note: The program is still in beta and therefore is NOT meant to represent the full product.
         Please, all bugs report on GitHub. And yes, the code is awful.
             -laser :)
         SYNTAX:
-        [] - switches
-        <> - argument. All arguments are MANDATORY! *If you want to choose default settings, you have to use ' ',
-             even though it works only with run <error characters>.
+        [] - switches, can be typed either /s or -s. They are always ONE LETTER!
+        <> - arguments
         COMMANDS:
         run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - starts the typing
             -/k hides the onscreen keyboard
@@ -35,11 +42,12 @@ def help(sw,args):
             <speed> typing speed, in characters per seconds
             <errors> probability of error appearing in the text, 0-100, 100 for no errors
             <string> the text that will be typed out
-            <error characters>* list of charcters that error characters will be repalced with. If u want all letters, write ' '
+            <error characters> list of characters to be replaced by
         help: help [/s] - displays this help
             -/s show shorter version of this help
         version: version [/c] - prints the current version of the program
             -/c prints more detailed version of version changelog
+        tip: tip - displays a random tip
         ''')
 def version(sw,args):
     if "c" in sw:
@@ -47,9 +55,9 @@ def version(sw,args):
        =========
        =VERSION=
        =========
-       Version: BETA 0.2 - MAJOR RELEASE
-       Codename: less 'if' update
-       Release date: 16/12/22 (DD/MM/YY)
+       Version: BETA 0.3 - MAJOR RELEASE
+       Codename: finally linux switches
+       Release date: 22/12/22 (DD/MM/YY)
        
        CHANGELOG:
        MAJOR:
@@ -66,7 +74,7 @@ def version(sw,args):
                 -added the /c switch
             -removed changelog command''')
     else:
-        print('''Version: beta 0.2
+        print('''Version: beta 0.3
 Still under development. Use version /c for more info
 or help for help''')
 def run(sw,args):
@@ -89,9 +97,8 @@ def run(sw,args):
         time.sleep(3)
     try: vol=args[3]
     except: vol=' '
-    typer.typer(args[2],int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out)
-    print("Error:run command:unknown error")
-
+    try: typer.typer(args[2],int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out)
+    except: print("Error:run command:unknown error")
 class Command:
     def __init__(self, cmd, alias, args,vol, execute):
         self.cmd=cmd
@@ -117,6 +124,8 @@ class Command:
             #print(str(len(receiveargs)) + str(receiveargs))
             if len(receiveargs)==self.args or len(receiveargs)>self.args:
                 exec(self.execute)
+                history.append(self.cmd)
+                #print(history)
             else: print("Error:Incorrect number of arguments")
 
 if len(sys.argv)==1:
@@ -130,4 +139,6 @@ v=Command("help", "h", 0,0,'help(out_sw,0)')
 v.update()
 x=Command("version", "v", 0,0,'version(out_sw,0)')
 x.update()
+z=Command("tip", "t", 0,0,'tips()')
+z.update()
 
