@@ -44,5 +44,5 @@ def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out):
         time.sleep(1/cpm)
         if write_out==0:
             if os.name=='nt': os.system('cls')
-            elif os.name=='posix': os.system('clear'
+            elif os.name=='posix': os.system('clear')
         index+=1
