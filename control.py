@@ -67,7 +67,7 @@ def version(sw,args):
         -Added syntax help if command is written improperly
         -Added random tip in version command''')
     else:
-        print('''Version: beta 0.3
+        print('''Version: beta 0.3.1
 Still under development. Use version /c for more info
 or help for help''')
         tips()
