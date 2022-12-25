@@ -26,20 +26,20 @@ even though it works only with the `run` command.
    - `/c` - prints more detailed version of version changelog
 
 ## Changelog
-### Beta 0.2
+### Beta 0.3
 #### MAJOR
-- CLI system updated
-- Command switches added
-- Removed support for voluntary arguments and aliases
+- Added linux switch-writing support
+- readded voluntary arguments
+- added aliases
 #### MINOR
-- changed the run command
-- added switches /k /s /d /w
-- removed the alias r
-- changed the help command
-- added the /s switch
-- changed the version command
-- added the /c switch
 - removed changelog command
+- added v -c
+### Beta 0.3.1 (newest)
+#### MAJOR
+---
+#### MINOR
+- fixed the broken help
+- added syntax help if you type out command wrong
 ## Disclaimer
 This is a beta and it is NOT SUPPOSED TO REPRESENT THE FULL PRODUCT! I only wanna backup it here as I'm gonna have to rewrite a big chunk of it, because the code is pretty bad. But if u use it anyway and find a bug, please report it using GitHub issues. Also don't look at it unless you wanna add it to your cringe compilation.
 

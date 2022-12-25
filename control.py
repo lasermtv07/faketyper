@@ -4,6 +4,28 @@ import typer
 import time
 import random
 history=[]
+kb_en=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
+    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
+    ]
+kb_cs=[[';','+','ě','š','č','ř','ž','ý','á','í','é','=','´'],
+    ['q','w','e','r','t','z','u','i','o','p','ú',')','¨ '],
+    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
+    ]
+kb_ru=[['§','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['й','ц','у','к','е','н','г','ш','щ','з','х','ъ','\ '],
+    ['ф','ы','в','а','п','р','о','л','д','ж','э','ENTER'],
+    ['я','ч','с','м','и','т','ь','б','ю','.',' SHIFT']
+    ]
+kb_su=[['ё','1','2','3','4','5','6','7','8','9','0','+','´'],
+    ['q','w','e','r','t','y','u','i','o','p','å','¨','/ '],
+    ['a','s','d','f','g','h','j','k','l','ö','ä','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','-',' SHIFT']
+    ]
+
+
 def tips():
     tip=["use -s when typing the help command for shortened version"
         ,"when you always forget syntax of a command, just display shortened help",
@@ -72,6 +94,22 @@ Still under development. Use version /c for more info
 or help for help''')
         tips()
 def run(sw,args):
+    kb=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
+    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
+    ]
+    wr=args[2]
+    if "t" in sw:
+        f=open(args[2],'r')
+        wr=f.read()
+        f.close()
+    if "c" in sw:
+        kb=kb_cs
+    elif "s" in sw:
+        kb=kb_su
+    elif "r" in sw:
+        kb=kb_ru
     vol=' '
     onscreen_kb=1
     use_cap=1
@@ -91,8 +129,8 @@ def run(sw,args):
         time.sleep(3)
     try: vol=args[3]
     except: vol=' '
-    try: typer.typer(args[2],int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out)
-    except: print("Error:run command:unknown error")
+    typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,kb)
+    print("Error:run command:unknown error")
 class Command:
     def __init__(self, cmd, alias, args,vol, execute, syntax):
         self.cmd=cmd

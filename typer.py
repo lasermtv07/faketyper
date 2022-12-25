@@ -7,17 +7,12 @@ import math
 from pynput.keyboard import Controller
 
 keyboard=Controller()
-def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out):
+def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original):
     if replace_string==' ' or replace_string==None:
-        replace_string='qwertyuiop[]asdfghjkl;zxcvbnm,./'
+        replace_string='qwertyuiop[]asdfghjkl;zxcvbnm,./=´§ů,.-'
     index=0
     space_off='CTRL   WIN   ALT   [  SPACE  ]   ALT   OPT   CTRL'
     space_on='CTRL   WIN   ALT   [_________]   ALT   OPT   CTRL'
-    kb_original=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
-    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
-    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
-    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
-    ]
     kb=copy.deepcopy(kb_original)
     #print(kb_original)
     def draw_ty(draw):
