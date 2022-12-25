@@ -7,7 +7,7 @@ import math
 from pynput.keyboard import Controller
 
 keyboard=Controller()
-def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
+def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out):
     if replace_string==' ' or replace_string==None:
         replace_string='qwertyuiop[]asdfghjkl;zxcvbnm,./'
     index=0
@@ -28,7 +28,7 @@ def typer(text,cpm,correctness,replace_string,kb_use,use_caps,write_out):
 
     while index<len(text):
         tindex=text[index]
-        if random.randint(0,correctness)==0 and correctness!=100:
+        if random.randint(0,error)==error and error!=0:
             tindex=random.choice(replace_string)
         for z in kb:
             if tindex in z:
