@@ -20,13 +20,15 @@ HELP - SHORT
 ============
 run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters>
 help [/s]
-version [/c] ''')
+version [/c]
+tip
+*u can use either the windows style or the linux style switch writing''')
     else:
         print('''
         ========
         = HELP =
         ========
-        <major 0.3>
+        <minor 0.3.1>
         Note: The program is still in beta and therefore is NOT meant to represent the full product.
         Please, all bugs report on GitHub. And yes, the code is awful.
             -laser :)
@@ -34,7 +36,7 @@ version [/c] ''')
         [] - switches, can be typed either /s or -s. They are always ONE LETTER!
         <> - arguments
         COMMANDS:
-        run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*> - starts the typing
+        run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters> - starts the typing
             -/k hides the onscreen keyboard
             -/d disables the use of capital letters. Legacy function.
             -/b writes out the typed string after typing finishes
@@ -55,28 +57,20 @@ def version(sw,args):
        =========
        =VERSION=
        =========
-       Version: BETA 0.3 - MAJOR RELEASE
+       Version: BETA 0.3.1 - MINOR RELEASE
        Codename: finally linux switches
-       Release date: 22/12/22 (DD/MM/YY)
+       Release date: 25/12/22 (DD/MM/YY)
        
        CHANGELOG:
-       MAJOR:
-            -CLI system updated
-            -Command switches added
-            -Removed support for voluntary arguments and aliases
        MINOR:
-            - changed the run command
-                -added switches /k /s /d /w
-                -removed the alias r
-            - changed the help command
-                -added the /s switch
-            -changed the version command
-                -added the /c switch
-            -removed changelog command''')
+        -Fixed the wrong changelog, updated help
+        -Added syntax help if command is written improperly
+        -Added random tip in version command''')
     else:
         print('''Version: beta 0.3
 Still under development. Use version /c for more info
 or help for help''')
+        tips()
 def run(sw,args):
     vol=' '
     onscreen_kb=1
@@ -100,12 +94,13 @@ def run(sw,args):
     try: typer.typer(args[2],int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out)
     except: print("Error:run command:unknown error")
 class Command:
-    def __init__(self, cmd, alias, args,vol, execute):
+    def __init__(self, cmd, alias, args,vol, execute, syntax):
         self.cmd=cmd
         self.alias=alias
         self.args=args
         self.execute=execute
         self.vol=vol
+        self.syntax=syntax
     def update(self):
         if len(sys.argv)>1 and (self.cmd==sys.argv[1] or self.alias==sys.argv[1]):
             receiveargs=[]
@@ -126,19 +121,19 @@ class Command:
                 exec(self.execute)
                 history.append(self.cmd)
                 #print(history)
-            else: print("Error:Incorrect number of arguments")
+            else: print("Error: Wrong arguments: " + self.syntax)
 
 if len(sys.argv)==1:
     version([],0)
 
 #hi=Command("hi", ["/a"], 3,1,'print("hi" + str(out_sw) + str(receiveargs))')
 #hi.update()
-r=Command("run", "r", 3,1,'run(out_sw,receiveargs)')
+r=Command("run", "r", 3,1,'run(out_sw,receiveargs)',"run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters>")
 r.update()
-v=Command("help", "h", 0,0,'help(out_sw,0)')
+v=Command("help", "h", 0,0,'help(out_sw,0)',"help [/s]")
 v.update()
-x=Command("version", "v", 0,0,'version(out_sw,0)')
+x=Command("version", "v", 0,0,'version(out_sw,0)',"version [/c]")
 x.update()
-z=Command("tip", "t", 0,0,'tips()')
+z=Command("tip", "t", 0,0,'tips()',"tip")
 z.update()
 

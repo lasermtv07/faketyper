@@ -28,7 +28,7 @@ def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out):
 
     while index<len(text):
         tindex=text[index]
-        if random.randint(0,error)==error and error!=0:
+        if random.randint(0,error)==error and error!=100:
             tindex=random.choice(replace_string)
         for z in kb:
             if tindex in z:
