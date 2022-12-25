@@ -36,7 +36,7 @@ even though it works only with the `run` command.
 - added v -c
 ### Beta 0.3.1 (newest)
 #### MAJOR
----
+none
 #### MINOR
 - fixed the broken help
 - added syntax help if you type out command wrong
