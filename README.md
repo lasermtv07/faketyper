@@ -7,9 +7,6 @@ A CLI program that simulates keyboard input with an option to randomly generate 
 ### Syntax
 `[]` - switch  
 `<>` - argument
-
-*All arguments are **MANDATORY**! If you want to choose default settings, you have to use `' '` as the parameter,
-even though it works only with the `run` command.* - **OUTDATED**
 ### Commands
 - `run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters>` - types given string at given speed
    - `/k` - hides the onscreen keyboard
