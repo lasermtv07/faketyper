@@ -26,7 +26,7 @@ kb_su=[['ё','1','2','3','4','5','6','7','8','9','0','+','´'],
     ]
 
 
-def tips():
+def tips(sw):
     tip=["use -s when typing the help command for shortened version"
         ,"when you always forget syntax of a command, just display shortened help",
         "hello. Have (imaginary) 0.05USD for using my program",
@@ -34,7 +34,11 @@ def tips():
         "use v -c to show the changelog",
         "now on linux",
         "the syntax of the run command is: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters*>"]
-    print("The tip of today is: " + str(tip[random.randint(0,len(tip)-1)]))
+    if not "a" in sw: print("The tip of today is: " + str(tip[random.randint(0,len(tip)-1)]))
+    else:
+        print("List of all tips:")
+        for r in tip:
+            print("  -" + r)
 def help(sw,args):
     if "s" in sw:
         print('''
@@ -50,27 +54,39 @@ tip
         ========
         = HELP =
         ========
-        <minor 0.3.1>
-        Note: The program is still in beta and therefore is NOT meant to represent the full product.
-        Please, all bugs report on GitHub. And yes, the code is awful.
-            -laser :)
+        <major 0.4>
+        Report all bugs you find via github issues and I'll love you <3
         SYNTAX:
-        [] - switches, can be typed either /s or -s. They are always ONE LETTER!
-        <> - arguments
+        [] - switches, can be typed either using the Windows /x
+             or the Linux -x format. They are always ONE LETTER!
+        { } - language switches. Set keyboard layout (run). Syntax
+              same as switches
+        <> - Mandatory arguments
+        | | - optional arguments
+        @ - Alternative name (first letter of the command)
         COMMANDS:
-        run: run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters> - starts the typing
-            -/k hides the onscreen keyboard
-            -/d disables the use of capital letters. Legacy function.
-            -/b writes out the typed string after typing finishes
-            -/w disables 3sec wait before typing starts
+        run: run @r [/k] [/d] [/b] [/w] {/c} {/f} {/r} <speed> <errors> <string> |error characters| - starts the typing
+            -[/k] hides the onscreen keyboard
+            -[/d] disables the use of capital letters. Legacy function, /doesnt work anymore change of library/
+            -[/b] writes out the typed string after typing finishes
+            -[/w] disables 3sec wait before typing starts
+            -[/t] makes the program read input string from a .txt file
+                  instead of the string typed into command
+            -[/s] disables the use of keyboard aliases; List here:
+                    - "■" or "¦".. Backspace 
+            -{/c} sets the keyboard layout to Czech
+            -{/f} sets the keyboard layout to Finnish
+            -{/r} sets the keyboard layout to Russian
             <speed> typing speed, in characters per seconds
             <errors> probability of error appearing in the text, 0-100, 100 for no errors
             <string> the text that will be typed out
-            <error characters> list of characters to be replaced by
-        help: help [/s] - displays this help
-            -/s show shorter version of this help
-            -/c prints more detailed version of version changelog
-        tip: tip - displays a random tip
+            |error characters| list of characters to be replaced by - optional
+        help: help @h [/s] - displays this help
+            -[/s] show shorter version of this help
+        version: version @v [/c]
+            -[/c] prints more detailed version of version changelog
+        tip: tip @t [/a] - displays a random tip
+            -[/a] prints the list of all tips existing
         ''')
 def version(sw,args):
     if "c" in sw:
@@ -78,20 +94,33 @@ def version(sw,args):
        =========
        =VERSION=
        =========
-       Version: BETA 0.3.1 - MINOR RELEASE
-       Codename: finally linux switches
-       Release date: 25/12/22 (DD/MM/YY)
+       Version: BETA 0.4 - MAJOR RELEASE
+       Codename: You'll love it!
+       Release date: 27/12/22 (DD/MM/YY)
        
        CHANGELOG:
-       MINOR:
-        -Fixed the wrong changelog, updated help
-        -Added syntax help if command is written improperly
-        -Added random tip in version command''')
+       MAJOR:
+            -Ability to import .txt files (using the /t switch)
+            -Ability to use multiple keyboard layouts with the /c /f /r switches
+                -Added Czech layout to the keyboard visualiser
+                -Added Finnish keyboard the keyboard visualizer
+                -Added Russian keyboard to the keyboard visualiser
+                (leave empty if you want to keep the english keyboard)
+            -Error generator algorithmus updated; if you want to know how, open
+             either help or source code and look
+            -Added keyboard aliases; "■" or "¦" now symbolize backspace
+                -Can be disabled with the /s switch
+        MINOR:
+            -Writing out text when typing out the text
+             now works as intended
+            -Added the /a switch to tip command; via help
+            -Edited and improved the help
+            -Unspecified bugfixes''')
     else:
-        print('''Version: beta 0.3.1
+        print('''Version: beta 0.4
 Still under development. Use version /c for more info
 or help for help''')
-        tips()
+        tips("")
 def run(sw,args):
     disable_bp=True
     kb=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
@@ -120,7 +149,7 @@ def run(sw,args):
         onscreen_kb=0
     if "d" in sw:
         use_cap=0
-    if "b" in sw and "k" in sw:
+    if "b" in sw:
         write_out=1
     if args[0].isnumeric()!=True:
         print("Error:run command:wrong input type (speed)")
@@ -174,6 +203,6 @@ v=Command("help", "h", 0,0,'help(out_sw,0)',"help [/s]")
 v.update()
 x=Command("version", "v", 0,0,'version(out_sw,0)',"version [/c]")
 x.update()
-z=Command("tip", "t", 0,0,'tips()',"tip")
+z=Command("tip", "t", 0,0,'tips(out_sw)',"tip")
 z.update()
 
