@@ -69,7 +69,6 @@ tip
             <error characters> list of characters to be replaced by
         help: help [/s] - displays this help
             -/s show shorter version of this help
-        version: version [/c] - prints the current version of the program
             -/c prints more detailed version of version changelog
         tip: tip - displays a random tip
         ''')
@@ -94,6 +93,7 @@ Still under development. Use version /c for more info
 or help for help''')
         tips()
 def run(sw,args):
+    disable_bp=True
     kb=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
     ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
     ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
@@ -106,7 +106,7 @@ def run(sw,args):
         f.close()
     if "c" in sw:
         kb=kb_cs
-    elif "s" in sw:
+    elif "f" in sw:
         kb=kb_su
     elif "r" in sw:
         kb=kb_ru
@@ -114,6 +114,8 @@ def run(sw,args):
     onscreen_kb=1
     use_cap=1
     write_out=0
+    if "s" in sw:
+        disable_bp=False
     if "k" in sw:
         onscreen_kb=0
     if "d" in sw:
@@ -129,7 +131,7 @@ def run(sw,args):
         time.sleep(3)
     try: vol=args[3]
     except: vol=' '
-    typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,kb)
+    typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,kb,disable_bp)
     print("Error:run command:unknown error")
 class Command:
     def __init__(self, cmd, alias, args,vol, execute, syntax):
