@@ -37,8 +37,7 @@ def tips(sw):
     if not "a" in sw: print("The tip of today is: " + str(tip[random.randint(0,len(tip)-1)]))
     else:
         print("List of all tips:")
-        for r in tip:
-            print("  -" + r)
+        print(*tip, sep="\n  -")
 def help(sw,args):
     if "s" in sw:
         print('''
@@ -178,14 +177,14 @@ class Command:
         if len(sys.argv)>1 and (self.cmd==sys.argv[1] or self.alias==sys.argv[1]):
             receiveargs=[]
             out_sw=[]
-            for x in range(2,len(sys.argv)):
-                receiveargs.append(sys.argv[x])
+            #for x in range(2,len(sys.argv)):
+            #    receiveargs.append(sys.argv[x])
+            receiveargs=sys.argv[2:]
             for y in receiveargs:
                 if y[0]=="/" or y[0]=="-":
                     out_sw.append(y)
-            for r in out_sw:
-                while r in receiveargs:
-                    receiveargs.remove(r)
+                    while y in receiveargs:
+                        receiveargs.remove(y)
             for u in range(len(out_sw)):
                 if "/" in out_sw[u] or "-" in out_sw[u]:
                     out_sw[u]=out_sw[u][1]
