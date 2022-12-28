@@ -55,3 +55,4 @@ This is still a beta version, so it's still a *bit* rough around the edges. If y
 <br/>
 <br/>
 **Application doesn't use sematic versioning (MAJOR.MINOR.PATCH), it uses my own instead (RELEASE_STAGE.MAJOR.MINOR)*
+s
