@@ -34,7 +34,7 @@ A CLI program that simulates keyboard input with an option to randomly generate 
    - `[/a]` prints all tips
 
 ## Changelog
-### Beta 0.4 - You'll love it! (newest)
+### Beta 0.4* - You'll love it! (newest)
 #### MAJOR
 - Ability to import .txt files (using the /t switch)
 - Ability to use multiple keyboard layouts with the /c /f /r switches
@@ -52,3 +52,6 @@ A CLI program that simulates keyboard input with an option to randomly generate 
 - Unspecified bugfixes
 ## Disclaimer
 This is still a beta version, so it's still a *bit* rough around the edges. If you find a bug or have asuggestion, make sure to write it into the issues :)
+<br/>
+<br/>
+**Application doesn't use sematic versioning (MAJOR.MINOR.PATCH), it uses my own instead (RELEASE_STAGE.MAJOR.MINOR)*
