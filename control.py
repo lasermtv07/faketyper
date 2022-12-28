@@ -44,10 +44,10 @@ def help(sw,args):
         print('''
 HELP - SHORT
 ============
-run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters>
+run @r [/k] [/d] [/b] [/w] {/c} {/f} {/r} <speed> <errors> <string> |error characters|
 help [/s]
 version [/c]
-tip
+tip [/a]
 *u can use either the windows style or the linux style switch writing''')
     else:
         print('''
@@ -96,7 +96,7 @@ def version(sw,args):
        =========
        Version: BETA 0.4 - MAJOR RELEASE
        Codename: You'll love it!
-       Release date: 27/12/22 (DD/MM/YY)
+       Release date: 28/12/22 (DD/MM/YY)
        
        CHANGELOG:
        MAJOR:
@@ -130,9 +130,13 @@ def run(sw,args):
     ]
     wr=args[2]
     if "t" in sw:
-        f=open(args[2],'r')
-        wr=f.read()
-        f.close()
+        try:
+            f=open(args[2],'r')
+            wr=f.read()
+            f.close()
+        except:
+            print("Error: error loading the file")
+            exit()
     if "c" in sw:
         kb=kb_cs
     elif "f" in sw:
@@ -160,8 +164,8 @@ def run(sw,args):
         time.sleep(3)
     try: vol=args[3]
     except: vol=' '
-    typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,kb,disable_bp)
-    print("Error:run command:unknown error")
+    try: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,kb,disable_bp)
+    except: print("Error:run command:unknown error")
 class Command:
     def __init__(self, cmd, alias, args,vol, execute, syntax):
         self.cmd=cmd
@@ -197,7 +201,7 @@ if len(sys.argv)==1:
 
 #hi=Command("hi", ["/a"], 3,1,'print("hi" + str(out_sw) + str(receiveargs))')
 #hi.update()
-r=Command("run", "r", 3,1,'run(out_sw,receiveargs)',"run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters>")
+r=Command("run", "r", 3,1,'run(out_sw,receiveargs)',"run @r [/k] [/d] [/b] [/w] {/c} {/f} {/r} <speed> <errors> <string> |error characters|")
 r.update()
 v=Command("help", "h", 0,0,'help(out_sw,0)',"help [/s]")
 v.update()
