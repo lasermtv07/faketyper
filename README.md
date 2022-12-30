@@ -12,20 +12,20 @@ A CLI program that simulates keyboard input with an option to randomly generate 
 `@` - Alternative name (first letter of the command - can also be used as keyboard shortcut)
 ### Commands
 - `run @r [/k] [/d] [/b] [/w] {/c} {/f} {/r} <speed> <errors> <string> |error characters|` - types given string at given speed
-   - [/k] hides the onscreen keyboard
-   - [/d] disables the use of capital letters. Legacy function, /doesnt work anymore change of library/
-   - [/b] writes out the typed string after typing finishes
-   - [/w] disables 3sec wait before typing starts
-   - [/t] makes the program read input string from a .txt file instead of the string typed into command
-   - [/s] disables the use of keyboard aliases; List here:
-      - "■" or "¦".. Backspace 
-   - {/c} sets the keyboard layout to Czech
-   - {/f} sets the keyboard layout to Finnish
-   - {/r} sets the keyboard layout to Russian
-   - <speed> typing speed, in characters per seconds
-   - <errors> amount of errors appearing in the text, 0-100, 100 for no errors
-   - <string> the text that will be typed out
-   - |error characters| list of characters to be replaced by - optional
+   - `[/k]` hides the onscreen keyboard
+   - `[/d]` disables the use of capital letters. Legacy function, /doesnt work anymore change of library/
+   - `[/b]` writes out the typed string after typing finishes
+   - `[/w]` disables 3sec wait before typing starts
+   - `[/t]` makes the program read input string from a .txt file instead of the string typed into command
+   - `[/s]` disables the use of keyboard aliases; List here:
+      - `■` or `¦`.. Backspace 
+   - `{/c}` sets the keyboard layout to Czech
+   - `{/f}` sets the keyboard layout to Finnish
+   - `{/r}` sets the keyboard layout to Russian
+   - `<speed>` typing speed, in characters per seconds
+   - `<errors>` amount of errors appearing in the text, 0-100, 100 for no errors
+   - `<string>` the text that will be typed out
+   - `|error characters|` list of characters to be replaced by - optional
 - `help @h [/s]` - displays this help
    - `[/s]` show shorter version of this help
 - `version @v [/c]` - prints the current version of the program
