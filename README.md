@@ -18,7 +18,7 @@ A CLI program that simulates keyboard input with an option to randomly generate 
    - `[/w]` disables 3sec wait before typing starts
    - `[/t]` makes the program read input string from a .txt file instead of the string typed into command
    - `[/s]` disables the use of keyboard aliases; List here:
-      - `■` or `¦`.. Backspace 
+      - .`■` or `¦`.. Backspace 
    - `{/c}` sets the keyboard layout to Czech
    - `{/f}` sets the keyboard layout to Finnish
    - `{/r}` sets the keyboard layout to Russian
