@@ -50,6 +50,10 @@ A CLI program that simulates keyboard input with an option to randomly generate 
 - Added the /a switch to tip command; via help
 - Edited and improved the help
 - Unspecified bugfixes
+## Known issues:
+- long lag and exception when run command is started with wrong arguments
+- types wrong czech/finnish characters (idk is is fixable)
+- long waiting times
 ## Disclaimer
 This is still a beta version, so it's still a *bit* rough around the edges. If you find a bug or have asuggestion, make sure to write it into the issues :)
 <br/>
