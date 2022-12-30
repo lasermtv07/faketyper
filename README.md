@@ -51,9 +51,9 @@ A CLI program that simulates keyboard input with an option to randomly generate 
 - Edited and improved the help
 - Unspecified bugfixes
 ## Known issues:
-- long lag and exception when run command is started with wrong arguments
+- long lag and exception when run command is started with wrong arguments (sometimes)
 - types wrong czech/finnish characters (idk is is fixable)
-- long waiting times
+- lags times (cmd, compiled - works fine uncompiled in vs code cmd)
 ## Disclaimer
 This is still a beta version, so it's still a *bit* rough around the edges. If you find a bug or have asuggestion, make sure to write it into the issues :)
 <br/>
