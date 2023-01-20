@@ -5,8 +5,9 @@ import time
 import random
 import math
 from pynput.keyboard import Key, Controller
+import keyboard as kbm
 keyboard=Controller()
-def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original,disable_bp):
+def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original,disable_bp,loop):
     sofar=""
     if replace_string==' ' or replace_string==None:
         replace_string='qwertyuiop[]asdfghjkl;zxcvbnm,./=´§ů,.-'
@@ -21,8 +22,6 @@ def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original,di
                 print(y, end='   ')
             print()
 
-
-
     while index<len(text):
         tindex=text[index]
         if random.randint(0,100)==55 and error>0 and error<len(text)-len(sofar):
@@ -35,7 +34,7 @@ def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original,di
                 z[ind] = "█"
         
         if kb_use==1: draw_ty(kb)
-        if tindex==' ' and kb_use==1 :print(space_on)
+        if ord(tindex)==32 and kb_use==1 :print(space_on)
         elif kb_use==1:print(space_off)
         if write_out==1: print(sofar)
         if tindex=="¦" and disable_bp==True:
@@ -48,4 +47,13 @@ def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original,di
         time.sleep(1/cpm)
         if os.name=='nt': os.system('cls')
         elif os.name=='posix': os.system('clear')
+        if kbm.is_pressed('esc'):
+            print("Typing stopped")
+            exit()
+
         index+=1
+
+#typer("Ahoj Bohouši <3",10,0,None,1,1,1,[['`','1','2','3','4','5','6','7','8','9','0','-','='],
+#    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
+#    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
+ #   ['z','x','c','v','b','n','m',',','.','/',' SHIFT']],0,0)

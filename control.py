@@ -1,14 +1,10 @@
 import sys
-import os.path
+import os
 import typer
 import time
 import random
+import copy
 history=[]
-kb_en=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
-    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
-    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
-    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
-    ]
 kb_cs=[[';','+','ě','š','č','ř','ž','ý','á','í','é','=','´'],
     ['q','w','e','r','t','z','u','i','o','p','ú',')','¨ '],
     ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
@@ -137,11 +133,12 @@ def run(sw,args):
             print("Error: error loading the file")
             exit()
     if "c" in sw:
-        kb=kb_cs
+        kb=copy.deepcopy(kb_cs)
+        print(kb)
     elif "f" in sw:
-        kb=kb_su
+        kb="f"
     elif "r" in sw:
-        kb=kb_ru
+        kb="r"
     vol=' '
     onscreen_kb=1
     use_cap=1
@@ -156,15 +153,40 @@ def run(sw,args):
         write_out=1
     if args[0].isnumeric()!=True:
         print("Error:run command:wrong input type (speed)")
-    if args[1].isnumeric()!=True and int(args[1])<101:
+        exit()
+    if args[1].isnumeric()!=True:
         print("Error:run command:wrong input type (errors)")
+        exit()
     if "w" not in sw:
         print("wait 3 seconds")
         time.sleep(3)
+    print(kb)
+    os.system("pause")
     try: vol=args[3]
     except: vol=' '
-    try: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,kb,disable_bp)
-    except: print("Error:run command:unknown error")
+    try: 
+        if "c" in sw: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['`','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
+    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
+    ],disable_bp,1)
+        elif "f" in sw: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['ё','1','2','3','4','5','6','7','8','9','0','+','´'],
+    ['q','w','e','r','t','y','u','i','o','p','å','¨','/ '],
+    ['a','s','d','f','g','h','j','k','l','ö','ä','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','-',' SHIFT']
+    ],disable_bp,1)
+        elif "r" in sw: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['§','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['й','ц','у','к','е','н','г','ш','щ','з','х','ъ','\ '],
+    ['ф','ы','в','а','п','р','о','л','д','ж','э','ENTER'],
+    ['я','ч','с','м','и','т','ь','б','ю','.',' SHIFT']
+    ],disable_bp,1)
+        else: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['`','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
+    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
+    ],disable_bp,1)
+
+    except Exception as e: print("Error: unknown error: python exception: " + str(e) + " (please copy this text and send it to me via github issues)")
 class Command:
     def __init__(self, cmd, alias, args,vol, execute, syntax):
         self.cmd=cmd
@@ -180,18 +202,25 @@ class Command:
             #for x in range(2,len(sys.argv)):
             #    receiveargs.append(sys.argv[x])
             receiveargs=sys.argv[2:]
+            print(receiveargs)
             for y in receiveargs:
+                print(y)
                 if y[0]=="/" or y[0]=="-":
                     out_sw.append(y)
-                    while y in receiveargs:
-                        receiveargs.remove(y)
+                    for b in range(len(receiveargs)-1):
+                        if receiveargs[b]==y:
+                            receiveargs[b]=""
+                            receiveargs=' '.join(receiveargs).split()
+                #list(filter(lambda a: a != y, receiveargs))
             for u in range(len(out_sw)):
                 if "/" in out_sw[u] or "-" in out_sw[u]:
                     out_sw[u]=out_sw[u][1]
-            #print(str(len(receiveargs)) + str(receiveargs))
+            print(str(len(receiveargs)) + str(receiveargs))
             if len(receiveargs)==self.args or len(receiveargs)>self.args:
+                print(out_sw)
+                print(receiveargs)
                 exec(self.execute)
-                history.append(self.cmd)
+                . But f
                 #print(history)
             else: print("Error: Wrong arguments: " + self.syntax)
 
