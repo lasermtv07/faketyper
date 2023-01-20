@@ -1,10 +1,18 @@
 import sys
-import os
+import os.path
 import typer
 import time
 import random
-import copy
 history=[]
+all_commands=["run","r","help","h","version","v","ti","t"]
+def separ(string):
+    return "¬".join(string.split())
+
+kb_en=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
+    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
+    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
+    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
+    ]
 kb_cs=[[';','+','ě','š','č','ř','ž','ý','á','í','é','=','´'],
     ['q','w','e','r','t','z','u','i','o','p','ú',')','¨ '],
     ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
@@ -33,7 +41,8 @@ def tips(sw):
     if not "a" in sw: print("The tip of today is: " + str(tip[random.randint(0,len(tip)-1)]))
     else:
         print("List of all tips:")
-        print(*tip, sep="\n  -")
+        for r in tip:
+            print("  -" + r)
 def help(sw,args):
     if "s" in sw:
         print('''
@@ -49,7 +58,7 @@ tip [/a]
         ========
         = HELP =
         ========
-        <major 0.4>
+        <major 1.1>
         Report all bugs you find via github issues and I'll love you <3
         SYNTAX:
         [] - switches, can be typed either using the Windows /x
@@ -59,16 +68,20 @@ tip [/a]
         <> - Mandatory arguments
         | | - optional arguments
         @ - Alternative name (first letter of the command)
-        COMMANDS:
-        run: run @r [/k] [/d] [/b] [/w] {/c} {/f} {/r} <speed> <errors> <string> |error characters| - starts the typing
+        COMMANDS*:
+        run**: run @r [/k] [/d] [/b] [/w] [/l] [/e] {/c} {/f} {/r} <speed> <errors> <string> |error characters| - starts the typing
             -[/k] hides the onscreen keyboard
-            -[/d] disables the use of capital letters. Legacy function, /doesnt work anymore change of library/
+            -[/d] disables the use of capital letters. Legacy function, /doesnt work anymore - change of code structure/
             -[/b] writes out the typed string after typing finishes
             -[/w] disables 3sec wait before typing starts
             -[/t] makes the program read input string from a .txt file
                   instead of the string typed into command
             -[/s] disables the use of keyboard aliases; List here:
-                    - "■" or "¦".. Backspace 
+                    - "■" or "¦".. Backspace
+                    - "^".. Space
+                    - "¬"***.. Newline
+            -[/l] writes the text in an endless loop
+            -[/e] - Newlines with every space
             -{/c} sets the keyboard layout to Czech
             -{/f} sets the keyboard layout to Finnish
             -{/r} sets the keyboard layout to Russian
@@ -82,6 +95,13 @@ tip [/a]
             -[/c] prints more detailed version of version changelog
         tip: tip @t [/a] - displays a random tip
             -[/a] prints the list of all tips existing
+            
+        FOOTNOTES:
+            -* - program can sometimes run slow, especially
+                for the first time if the libraries arent loaded or if 
+                you set too big speed. Disable keyboard projection, that might help
+            -** - you can stop the run with the esc key
+            -*** - presses space, cant have [/s] in command
         ''')
 def version(sw,args):
     if "c" in sw:
@@ -89,34 +109,29 @@ def version(sw,args):
        =========
        =VERSION=
        =========
-       Version: BETA 0.4 - MAJOR RELEASE
-       Codename: You'll love it!
-       Release date: 28/12/22 (DD/MM/YY)
+       Version: 1.1.0 - MAJOR RELEASE
+       Codename: Uhh.. full release i guess?
+       Release date: 1/20/23 (DD/MM/YY)
        
        CHANGELOG:
        MAJOR:
-            -Ability to import .txt files (using the /t switch)
-            -Ability to use multiple keyboard layouts with the /c /f /r switches
-                -Added Czech layout to the keyboard visualiser
-                -Added Finnish keyboard the keyboard visualizer
-                -Added Russian keyboard to the keyboard visualiser
-                (leave empty if you want to keep the english keyboard)
-            -Error generator algorithmus updated; if you want to know how, open
-             either help or source code and look
-            -Added keyboard aliases; "■" or "¦" now symbolize backspace
-                -Can be disabled with the /s switch
+            - keys on the visualiser now switch cases
+            - you can now loop write in endless loop using the [/l] switch
+            - you can now automatically newline after space is in the string using [/e]
+            - you can stop the pragram with esc
+            - added new aliases:
+                - "^" for space
+                - "¬" for newline
         MINOR:
-            -Writing out text when typing out the text
-             now works as intended
-            -Added the /a switch to tip command; via help
-            -Edited and improved the help
-            -Unspecified bugfixes''')
+            - if python exception is raised during the typer run, you get error message that
+              contains a short description of the error (insted of just "Error: unknown error" or long description)''')
     else:
-        print('''Version: beta 0.4
-Still under development. Use version /c for more info
+        print('''Version: full 1.1.0
+Full release, please report bugs on Github. Use version /c for more info
 or help for help''')
         tips("")
 def run(sw,args):
+    lw=False
     disable_bp=True
     kb=[['`','1','2','3','4','5','6','7','8','9','0','-','='],
     ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
@@ -133,12 +148,11 @@ def run(sw,args):
             print("Error: error loading the file")
             exit()
     if "c" in sw:
-        kb=copy.deepcopy(kb_cs)
-        print(kb)
+        kb=kb_cs
     elif "f" in sw:
-        kb="f"
+        kb=kb_su
     elif "r" in sw:
-        kb="r"
+        kb=kb_ru
     vol=' '
     onscreen_kb=1
     use_cap=1
@@ -151,42 +165,21 @@ def run(sw,args):
         use_cap=0
     if "b" in sw:
         write_out=1
+    if "l" in sw:
+        lw=True
+    if "e" in sw:
+        wr=separ(wr)
     if args[0].isnumeric()!=True:
         print("Error:run command:wrong input type (speed)")
-        exit()
-    if args[1].isnumeric()!=True:
+    if args[1].isnumeric()!=True and int(args[1])<101:
         print("Error:run command:wrong input type (errors)")
-        exit()
     if "w" not in sw:
         print("wait 3 seconds")
         time.sleep(3)
-    print(kb)
-    os.system("pause")
     try: vol=args[3]
     except: vol=' '
-    try: 
-        if "c" in sw: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['`','1','2','3','4','5','6','7','8','9','0','-','='],
-    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
-    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
-    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
-    ],disable_bp,1)
-        elif "f" in sw: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['ё','1','2','3','4','5','6','7','8','9','0','+','´'],
-    ['q','w','e','r','t','y','u','i','o','p','å','¨','/ '],
-    ['a','s','d','f','g','h','j','k','l','ö','ä','ENTER'],
-    ['z','x','c','v','b','n','m',',','.','-',' SHIFT']
-    ],disable_bp,1)
-        elif "r" in sw: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['§','1','2','3','4','5','6','7','8','9','0','-','='],
-    ['й','ц','у','к','е','н','г','ш','щ','з','х','ъ','\ '],
-    ['ф','ы','в','а','п','р','о','л','д','ж','э','ENTER'],
-    ['я','ч','с','м','и','т','ь','б','ю','.',' SHIFT']
-    ],disable_bp,1)
-        else: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,[['`','1','2','3','4','5','6','7','8','9','0','-','='],
-    ['q','w','e','r','t','y','u','i','o','p','[',']','\ '],
-    ['a','s','d','f','g','h','j','k','l',';','"','ENTER'],
-    ['z','x','c','v','b','n','m',',','.','/',' SHIFT']
-    ],disable_bp,1)
-
-    except Exception as e: print("Error: unknown error: python exception: " + str(e) + " (please copy this text and send it to me via github issues)")
+    try: typer.typer(wr,int(args[0]),int(args[1]),vol,onscreen_kb,use_cap,write_out,kb,disable_bp,lw)
+    except Exception as e: print("Error: Python error: " + str(e) + "\nPlease report this report to me using GitHub Issues")
 class Command:
     def __init__(self, cmd, alias, args,vol, execute, syntax):
         self.cmd=cmd
@@ -199,28 +192,22 @@ class Command:
         if len(sys.argv)>1 and (self.cmd==sys.argv[1] or self.alias==sys.argv[1]):
             receiveargs=[]
             out_sw=[]
-            #for x in range(2,len(sys.argv)):
-            #    receiveargs.append(sys.argv[x])
-            receiveargs=sys.argv[2:]
-            print(receiveargs)
+            for x in range(2,len(sys.argv)):
+                receiveargs.append(sys.argv[x])
             for y in receiveargs:
-                print(y)
                 if y[0]=="/" or y[0]=="-":
                     out_sw.append(y)
-                    for b in range(len(receiveargs)-1):
-                        if receiveargs[b]==y:
-                            receiveargs[b]=""
-                            receiveargs=' '.join(receiveargs).split()
-                #list(filter(lambda a: a != y, receiveargs))
+            for r in out_sw:
+                while r in receiveargs:
+                    receiveargs.remove(r)
             for u in range(len(out_sw)):
                 if "/" in out_sw[u] or "-" in out_sw[u]:
                     out_sw[u]=out_sw[u][1]
-            print(str(len(receiveargs)) + str(receiveargs))
+            #print(str(len(receiveargs)) + str(receiveargs))
             if len(receiveargs)==self.args or len(receiveargs)>self.args:
-                print(out_sw)
-                print(receiveargs)
+                #if "$debug" in receiveargs: print(receiveargs)
                 exec(self.execute)
-                . But f
+                history.append(self.cmd)
                 #print(history)
             else: print("Error: Wrong arguments: " + self.syntax)
 
@@ -237,4 +224,4 @@ x=Command("version", "v", 0,0,'version(out_sw,0)',"version [/c]")
 x.update()
 z=Command("tip", "t", 0,0,'tips(out_sw)',"tip")
 z.update()
-
+if len(sys.argv)>1 and sys.argv[1] not in all_commands: print("Error: Unknown command")
