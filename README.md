@@ -22,5 +22,5 @@ A CLI program that simulates keyboard input with an option to randomly generate 
 - `version [/c]` - prints the current version of the program
    - `/c` - prints more detailed version of version changelog
 
-##Current version
+## Current version
 1.1.0
