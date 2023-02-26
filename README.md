@@ -22,22 +22,5 @@ A CLI program that simulates keyboard input with an option to randomly generate 
 - `version [/c]` - prints the current version of the program
    - `/c` - prints more detailed version of version changelog
 
-## Changelog
-### Beta 0.3
-#### MAJOR
-- Added linux switch-writing support
-- readded voluntary arguments
-- added aliases
-#### MINOR
-- removed changelog command
-- added v -c
-### Beta 0.3.1 (newest)
-#### MAJOR
-none
-#### MINOR
-- fixed the broken help
-- added syntax help if you type out command wrong
-## Disclaimer
-This is a beta and it is NOT SUPPOSED TO REPRESENT THE FULL PRODUCT! I only wanna backup it here as I'm gonna have to rewrite a big chunk of it, because the code is pretty bad. But if u use it anyway and find a bug, please report it using GitHub issues. Also don't look at it unless you wanna add it to your cringe compilation.
-
-Your Laser =)
+##Current version
+1.1.0
