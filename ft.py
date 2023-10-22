@@ -1,3 +1,7 @@
+# faketyper, (C) 2022/23 lasermtv07
+# this programs comes with ABSOLUTELY NO WARRANTY, including warranty implied by merchability
+# released under the GNU General public licence, version 3.0 (via file attached to repository)
+# this program is free as in freedom, feel free to modify and redistriute it
 import sys
 import os.path
 import typer
@@ -102,6 +106,8 @@ tip [/a]
                 you set too big speed. Disable keyboard projection, that might help
             -** - you can stop the run with the esc key
             -*** - presses space, cant have [/s] in command
+        ---
+        Released under the GNU General Public Licence
         ''')
 def version(sw,args):
     if "c" in sw:
@@ -124,11 +130,28 @@ def version(sw,args):
                 - "¬" for newline
         MINOR:
             - if python exception is raised during the typer run, you get error message that
-              contains a short description of the error (insted of just "Error: unknown error" or long description)''')
+              contains a short description of the error (insted of just "Error: unknown error" or long description)
+              ---
+Released under the free GNU General Public Licence, version 3
+Feel free to redistribute the program, including modification and sale,
+under the condition that you'll keep it free for all other users.
+For a program to be free it must follow these 4 specification, as specified by RMS:
+    (0) Users have freedom to USE the program
+    (1) Users have access to the SOURCE CODE
+    (2) Users can REDISTRIBUTE the unmodified program
+    (3) Users can REDISTRIBUTE modified program
+More info on the GNU project website, www.gnu.org
+
+Have fun :)''')
     else:
         print('''Version: full 1.1.0
 Full release, please report bugs on Github. Use version /c for more info
-or help for help''')
+or help for help
+---
+Released under the free GNU General Public Licence, version 3
+Feel free to redistribute the program, including modification and sale,
+under the condition that you'll keep it free for all other users.
+visit www.gnu.org or type version -c for more info''')
         tips("")
 def run(sw,args):
     lw=False
