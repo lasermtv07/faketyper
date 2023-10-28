@@ -1,3 +1,5 @@
+#!/bin/python3
+#
 # faketyper, (C) 2022/23 lasermtv07
 # this programs comes with ABSOLUTELY NO WARRANTY, including warranty implied by merchability
 # released under the GNU General public licence, version 3.0 (via file attached to repository)
