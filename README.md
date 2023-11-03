@@ -1,26 +1,37 @@
-# FakeTyper
-## Description
-A CLI program that simulates keyboard input with an option to randomly generate a certain amount of errors in the output.
-## Usage
-`faketyper COMMAND options`
-## Help
-### Syntax
-`[]` - switch  
-`<>` - argument
-### Commands
-- `run [/k] [/d] [/b] [/w] <speed> <errors> <string> <error characters>` - types given string at given speed
-   - `/k` - hides the onscreen keyboard
-   - `/d` - disables the use of capital letters. Legacy function.
-   - `/b` - writes out the typed string after typing finishes
-   - `/w` - disables 3sec wait before typing starts
-   - `<speed>` - typing speed, in characters per seconds
-   - `<errors>` - probability of error appearing in the text, 0-100, 0 for no errors
-   - `<string>` - the text that will be typed out
-   - `<error characters>` - list of charcters that error characters will be repalced with. If u want all letters, write ' '
-- `help [/s]` - displays this help
-   - `/s` - show shorter version of this help
-- `version [/c]` - prints the current version of the program
-   - `/c` - prints more detailed version of version changelog
 
+***NOTE:***<br>
+This project is unlikely to be  maintained as of the last release v1.1.1, unless I am bothered to use it again, which I doubt
+
+# FakeTyper
+*Python - Vim - pynput - getkey*
+## Dependencies
+- python3
+- pynput
+- getkey
+## GNU style --help
+```
+Usage: ft run [OPTIONS]   SPEED ERR_COUNT STRING ERR_CHARACTERS*
+ft help [OPTIONS]
+ft version [OPTIONS]
+ft tip [OPTIONS]
+Fakes typing STRING on keyboard with SPEED and voluntary ERRORS configured with ERR_COUNT and ERR_CHARACTERS
+Options:
+run -k    hides onscreen keyboard
+    -d    Dont use, legacy feature
+    -b    writes out the typed string after typing finishes
+    -w    stops 3s wait before typing
+    -t    read STRING from a .txt file
+    -s    disable keyboard aliases (¦.. backspace; ^.. space; ¬.. newline)
+    -l    wrotes in endless Loop
+    -e    newlines with every space
+    -c    use Czech kb layout
+    -f    use Finnish kb layout
+    -r    use Russian kb layour
+help -s   shortened
+version -c    show changelog
+tip -a    write all
+---
+(c) lasermtv07, 2023
+```
 ## Current version
-1.1.0
+1.1.1
