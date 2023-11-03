@@ -4,7 +4,6 @@ import subprocess
 import time
 import random
 import math
-import keyboard as kbm
 from pynput.keyboard import Key, Controller
 keyboard=Controller()
 #edit recursive!
@@ -56,9 +55,6 @@ def typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original,di
         time.sleep(1/cpm)
         if os.name=='nt': os.system('cls')
         elif os.name=='posix': os.system('clear')
-        if kbm.is_pressed('esc'):
-            print("Typing stopped")
-            exit()
         index+=1
 
     if lw==True: typer(text,cpm,error,replace_string,kb_use,use_caps,write_out,kb_original,disable_bp,lw)

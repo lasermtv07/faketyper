@@ -9,6 +9,9 @@ import os.path
 import typer
 import time
 import random
+#---help for all commands
+H_RUN="rm @r -k -d -b -w -c -f -r <speed> <errors> <string> <error characters*>"
+VERSION="minor 1.1.1"
 history=[]
 all_commands=["run","r","help","h","version","v","ti","t"]
 def separ(string):
@@ -51,88 +54,74 @@ def tips(sw):
             print("  -" + r)
 def help(sw,args):
     if "s" in sw:
-        print('''
+        print(f'''
 HELP - SHORT
 ============
-run @r [/k] [/d] [/b] [/w] {/c} {/f} {/r} <speed> <errors> <string> |error characters|
-help [/s]
-version [/c]
-tip [/a]
+<{ VERSION }>
+{ H_RUN  }
+help -s
+version -c
+tip -a
 *u can use either the windows style or the linux style switch writing''')
     else:
-        print('''
+        print(f'''
         ========
         = HELP =
         ========
-        <major 1.1>
+        <{ VERSION }>
         Report all bugs you find via github issues and I'll love you <3
-        SYNTAX:
-        [] - switches, can be typed either using the Windows /x
-             or the Linux -x format. They are always ONE LETTER!
-        { } - language switches. Set keyboard layout (run). Syntax
-              same as switches
-        <> - Mandatory arguments
-        | | - optional arguments
-        @ - Alternative name (first letter of the command)
         COMMANDS*:
-        run**: run @r [/k] [/d] [/b] [/w] [/l] [/e] {/c} {/f} {/r} <speed> <errors> <string> |error characters| - starts the typing
-            -[/k] hides the onscreen keyboard
-            -[/d] disables the use of capital letters. Legacy function, /doesnt work anymore - change of code structure/
-            -[/b] writes out the typed string after typing finishes
-            -[/w] disables 3sec wait before typing starts
-            -[/t] makes the program read input string from a .txt file
+        run**: run { H_RUN  }
+            -k hides the onscreen keyboard
+            -d disables the use of capital letters. Legacy function, /doesnt work anymore - change of code structure/
+            -b writes out the typed string after typing finishes
+            -w disables 3sec wait before typing starts
+            -t makes the program read input string from a .txt file
                   instead of the string typed into command
-            -[/s] disables the use of keyboard aliases; List here:
+            -s disables the use of keyboard aliases; List here:
                     - "■" or "¦".. Backspace
                     - "^".. Space
                     - "¬"***.. Newline
-            -[/l] writes the text in an endless loop
-            -[/e] - Newlines with every space
-            -{/c} sets the keyboard layout to Czech
-            -{/f} sets the keyboard layout to Finnish
-            -{/r} sets the keyboard layout to Russian
+            -l writes the text in an endless loop
+            -e - Newlines with every space
+            -c sets the keyboard layout to Czech
+            -f sets the keyboard layout to Finnish
+            -r sets the keyboard layout to Russian
             <speed> typing speed, in characters per seconds
             <errors> probability of error appearing in the text, 0-100, 100 for no errors
             <string> the text that will be typed out
-            |error characters| list of characters to be replaced by - optional
-        help: help @h [/s] - displays this help
-            -[/s] show shorter version of this help
-        version: version @v [/c]
-            -[/c] prints more detailed version of version changelog
-        tip: tip @t [/a] - displays a random tip
-            -[/a] prints the list of all tips existing
+            <error characters*> list of characters to be replaced by - optional
+        help: help @h -s - displays this help
+            -s show shorter version of this help
+        version: version @v -c
+            -c prints more detailed version of version changelog
+        tip: tip @t -a - displays a random tip
+            -a prints the list of all tips existing
             
         FOOTNOTES:
             -* - program can sometimes run slow, especially
                 for the first time if the libraries arent loaded or if 
                 you set too big speed. Disable keyboard projection, that might help
             -** - you can stop the run with the esc key
-            -*** - presses space, cant have [/s] in command
+            -*** - presses space, cant have -s in command
         ---
         Released under the GNU General Public Licence
         ''')
 def version(sw,args):
     if "c" in sw:
-        print(''' 
+        print(f''' 
        =========
        =VERSION=
        =========
-       Version: 1.1.0 - MAJOR RELEASE
+       Version: { VERSION }
        Codename: Uhh.. full release i guess?
-       Release date: 1/20/23 (DD/MM/YY)
+       Release date: 4/11/23 (DD/MM/YY)
        
        CHANGELOG:
-       MAJOR:
-            - keys on the visualiser now switch cases
-            - you can now loop write in endless loop using the [/l] switch
-            - you can now automatically newline after space is in the string using [/e]
-            - you can stop the pragram with esc
-            - added new aliases:
-                - "^" for space
-                - "¬" for newline
         MINOR:
-            - if python exception is raised during the typer run, you get error message that
-              contains a short description of the error (insted of just "Error: unknown error" or long description)
+            - removed dependency on the keyboard package
+            - changes in notes
+            - added --help to comply with GNU standards
               ---
 Released under the free GNU General Public Licence, version 3
 Feel free to redistribute the program, including modification and sale,
@@ -146,8 +135,8 @@ More info on the GNU project website, www.gnu.org
 
 Have fun :)''')
     else:
-        print('''Version: full 1.1.0
-Full release, please report bugs on Github. Use version /c for more info
+        print(f'''Version: { VERSION  }
+Full release, please report bugs on Github. Use version -c for more info
 or help for help
 ---
 Released under the free GNU General Public Licence, version 3
@@ -239,14 +228,39 @@ class Command:
 if len(sys.argv)==1:
     version([],0)
 
-#hi=Command("hi", ["/a"], 3,1,'print("hi" + str(out_sw) + str(receiveargs))')
-#hi.update()
-r=Command("run", "r", 3,1,'run(out_sw,receiveargs)',"run @r [/k] [/d] [/b] [/w] {/c} {/f} {/r} <speed> <errors> <string> |error characters|")
+if "--help" in sys.argv:
+    print(f'''
+Usage: ft run [OPTIONS]   SPEED ERR_COUNT STRING ERR_CHARACTERS*
+ft help [OPTIONS]
+ft version [OPTIONS]
+ft tip [OPTIONS]
+Fakes typing STRING on keyboard with SPEED and voluntary ERRORS configured with ERR_COUNT and ERR_CHARACTERS
+Options:
+run -k    hides onscreen keyboard
+    -d    Dont use, legacy feature
+    -b    writes out the typed string after typing finishes
+    -w    stops 3s wait before typing
+    -t    read STRING from a .txt file
+    -s    disable keyboard aliases (¦.. backspace; ^.. space; ¬.. newline)
+    -l    wrotes in endless Loop
+    -e    newlines with every space
+    -c    use Czech kb layout
+    -f    use Finnish kb layout
+    -r    use Russian kb layour
+help -s   shortened
+version -c    show changelog
+tip -a    write all
+---
+(c) lasermtv07, 2023
+released under the GNU GPL licence
+''')
+    exit()
+r=Command("run", "r", 3,1,'run(out_sw,receiveargs)',H_RUN)
 r.update()
-v=Command("help", "h", 0,0,'help(out_sw,0)',"help [/s]")
+v=Command("help", "h", 0,0,'help(out_sw,0)',"help -s")
 v.update()
-x=Command("version", "v", 0,0,'version(out_sw,0)',"version [/c]")
+x=Command("version", "v", 0,0,'version(out_sw,0)',"version -c")
 x.update()
-z=Command("tip", "t", 0,0,'tips(out_sw)',"tip")
+z=Command("tip", "t", 0,0,'tips(out_sw)',"tip -a")
 z.update()
 if len(sys.argv)>1 and sys.argv[1] not in all_commands: print("Error: Unknown command")
