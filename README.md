@@ -1,9 +1,16 @@
 
-***NOTE:***<br>
-This project is unlikely to be  maintained as of the last release v1.1.1, unless I am bothered to use it again, which I doubt
+> ***NOTE:***<br>
+> This project is unlikely to be  maintained as of the last release v1.1.1, unless I am bothered to use it again, which I doubt
 
-# FakeTyper
-*Python - Vim - pynput - getkey*
+<h1 align=center>FakeTyper</h1>
+
+<div align=center>
+<img src="https://img.shields.io/badge/Language-Python-yellow" />
+<img src="https://img.shields.io/badge/Editor-Vim-green" />
+<img src="https://img.shields.io/badge/Library-pynput-red" />
+<img src="https://img.shields.io/badge/Library-getkey-red" />
+</div>
+
 ## Dependencies
 - python3
 - pynput
